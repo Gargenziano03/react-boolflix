@@ -1,6 +1,5 @@
-import React from "react"
-import { useContext } from "react"
-import { GlobalContext } from "../GlobalContext/GlobalContext.jsx"
+import { useContext, useEffect } from "react"
+import { GlobalContext } from "../GlobalContext/GlobalContext"
 
 export default function AppMain() {
     const { movies, fetchData } = useContext(GlobalContext)
@@ -11,7 +10,11 @@ export default function AppMain() {
 
     return (
         <div>
-            {movies && <ul><li>{movies}</li></ul>}
+            <ul>
+                {movies.map((movie) => (
+                    <li key={movie.id}>{movie.title}</li> // Mostro solo il titolo del film
+                ))}
+            </ul>
         </div>
     )
 }
