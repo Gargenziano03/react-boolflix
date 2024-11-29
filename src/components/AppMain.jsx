@@ -2,10 +2,13 @@ import { useGlobalContext } from "../GlobalContext/GlobalContext"
 import Flag from "react-world-flags"
 
 export default function AppMain() {
-    //destrutturo movies dal GlobalContext
-    const { movies } = useGlobalContext()
+    //otteniamo movies e seriesTv dal GlobalContext
+    const { movies, seriesTv } = useGlobalContext()
     const languageFlags = {
-        en: 'gb'
+        en: 'gb',
+        it: 'it',
+        fr: 'fr',
+        ja: 'jp',
     }
 
     return (
@@ -24,6 +27,20 @@ export default function AppMain() {
                         ))}
 
                     </ul>
+
+                    <ul className="movie-list">
+                        {seriesTv && seriesTv.map((serie, index) => (
+                            <li key={index} >
+                                {serie.original_title} <br />
+                                {serie.title} <br />
+                                {serie.vote_average} <br />
+                                {serie.original_language}
+                                <Flag code={languageFlags[serie.original_language]} style={{ height: 15 }} />
+                            </li>
+                        ))}
+
+                    </ul>
+
                 </div>
             </section>
         </div>
