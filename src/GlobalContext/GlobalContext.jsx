@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect } from "react";
+import { createContext, useState, useEffect, useContext } from "react";
 const GlobalContext = createContext();
 
 //Definiamo il provider del contesto, che avvolgerà i componenti figli
@@ -21,13 +21,31 @@ const MyProvider = ({ children }) => {
 
     }, [])
 
+    // Funzione per gestire l'invio del modulo di ricerca
+    function handleSearchForm(e) {
+        e.preventDefault();
+        console.log(base_movies_api_url);
+
+        // Facciamo una richiesta API per cercare i film usando il termine di ricerca
+        fetch(base_movies_api_url)
+            .then((res) => res.json())
+            .then(({ results }) => {
+                console.log(results);
+                setMovies(results);
+            });
+    }
+
     return (
         <>
             {/*valori forniti ai componenti figli */}
-            <GlobalContext.Provider value={{ movies, setMovies, setSearch, base_movies_api_url }}>
+            <GlobalContext.Provider value={{ movies, setMovies, setSearch, handleSearchForm }}>
                 {children}
             </GlobalContext.Provider>
         </>
     )
 }
-export { GlobalContext, MyProvider }
+
+function useGlobalContext() {
+    return useContext(GlobalContext);
+}
+export { MyProvider, useGlobalContext }

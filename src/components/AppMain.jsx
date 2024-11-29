@@ -1,23 +1,17 @@
-import { useContext } from "react"
-import { GlobalContext } from "../GlobalContext/GlobalContext"
-import Search from "./Search"
+import { useGlobalContext } from "../GlobalContext/GlobalContext"
+
 
 export default function AppMain() {
-    //destrutto movies dal GlobalContext
-    const { movies } = useContext(GlobalContext)
+    //destrutturo movies dal GlobalContext
+    const { movies } = useGlobalContext()
 
     return (
         <div className="container">
-            <div className="d-flex align-items-center justify-content-between">
-                <h2>movie</h2>
-                <Search />
-            </div>
-
             <section>
                 <div>
                     <ul className="movie-list">
                         {movies && movies.map((movie, index) => (
-                            <li key={index} style={{ borderBottom: '1px solid black', marginBottom: '1rem' }}>
+                            <li key={index} >
                                 {movie.original_title} <br />
                                 {movie.title} <br />
                                 {movie.vote_average} <br />
