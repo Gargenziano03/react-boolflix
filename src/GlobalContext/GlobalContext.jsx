@@ -1,22 +1,30 @@
-import { createContext, useState } from "react";
+import { createContext, useState, useEffect } from "react";
 const GlobalContext = createContext();
 
+//Definiamo il provider del contesto, che avvolgerà i componenti figli
 const MyProvider = ({ children }) => {
     const [movies, setMovies] = useState([]);
+    const [search, setSearch] = useState('')
 
-    function fetchData(url = 'https://api.themoviedb.org/3/search/movie?api_key=46b26adf1f6f07f0576248db35115069&query=spider-man') {
-        fetch(url)
-            .then(resp => resp.json())
-            .then(response => {
-                const results = response.results
-                setMovies(results)
-            })
-            .catch(error => console.error('Errore nel recupero dei dati:', error));
-    }
+    const api_key = import.meta.env.VITE_MOVIE_DB_API_KEY;
+    const base_movies_api_url = `https://api.themoviedb.org/3/search/movie?api_key=${api_key}&query=${search}`;
+
+    //caricare i film di tendenza quando il componente è montato
+    useEffect(() => {
+        fetch(`https://api.themoviedb.org/3/trending/movie/day?api_key=${api_key}`)
+            .then((res) => res.json())
+            .then(({ results }) => {
+                console.log(results);
+
+                setMovies(results);
+            });
+
+    }, [])
 
     return (
         <>
-            <GlobalContext.Provider value={{ movies, fetchData }}>
+            {/*valori forniti ai componenti figli */}
+            <GlobalContext.Provider value={{ movies, setMovies, setSearch, base_movies_api_url }}>
                 {children}
             </GlobalContext.Provider>
         </>
