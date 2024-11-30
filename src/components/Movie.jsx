@@ -18,7 +18,7 @@ export default function Movie() {
                     <li key={index} >
                         {movie.original_title} <br />
                         {movie.title} <br />
-                        <img src={'https://image.tmdb.org/t/p/w154' + movie.poster_path} alt="" />
+                        <img src={'https://image.tmdb.org/t/p/w342' + movie.poster_path} alt="" />
                         {movie.vote_average} <br />
                         {movie.original_language}
                         <Flag code={languageFlags[movie.original_language]} style={{ height: 15 }} />

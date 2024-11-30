@@ -17,7 +17,7 @@ export default function SeriesTv() {
                     <li key={index} >
                         {serie.original_title} <br />
                         {serie.title} <br />
-                        <img src={'https://image.tmdb.org/t/p/w154' + serie.poster_path} alt="" />
+                        <img src={'https://image.tmdb.org/t/p/w342' + serie.poster_path} alt="" />
                         {serie.vote_average} <br />
                         {serie.original_language}
                         <Flag code={languageFlags[serie.original_language]} style={{ height: 15 }} />
