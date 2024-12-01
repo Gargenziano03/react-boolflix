@@ -13,6 +13,7 @@ export default function AppCard({ item }) {
     const handleMouseEnter = () => setHovered(true);
     const handleMouseLeave = () => setHovered(false);
     return (
+
         <div className="card-container"
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
