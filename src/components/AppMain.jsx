@@ -1,16 +1,12 @@
+import List from './List'
 
-import Movie from "./Movie"
-import SeriesTv from "./SeriesTv"
 
 export default function AppMain() {
 
     return (
         <div className="container">
             <section>
-                <Movie />
-            </section>
-            <section>
-                <SeriesTv />
+                <List />
             </section>
         </div>
     )
