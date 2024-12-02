@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import Flag from "react-world-flags";
 export default function AppCard({ item }) {
     const [hovered, setHovered] = useState(false);
     //bandire 
@@ -21,7 +21,14 @@ export default function AppCard({ item }) {
             <div className="card-content">
                 <h3>{item.title || item.name}</h3>
                 {hovered && (
-                    <div className="card-info" style={overlayStyle}>
+                    <div className="card-info" style={{
+                        position: 'absolute',
+                        backgroundColor: 'rgba(0, 0, 0, 0.7)',
+                        color: 'white',
+                        padding: '10px',
+                        borderRadius: '5px',
+                        zIndex: 1
+                    }}>
                         <p><strong>Rating:</strong> {item.vote_average}</p>
                         <p><strong>Original Language:</strong> {item.original_language}</p>
                         {item.original_language && (

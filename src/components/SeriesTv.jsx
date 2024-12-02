@@ -7,7 +7,7 @@ export default function SeriesTv() {
 
     return (
         <div>
-            <ul className="movie-list">
+            <ul className="serie-list" >
                 {seriesTv && seriesTv.map((serie, index) => (
                     <li key={index} >
                         <AppCard item={serie} />
