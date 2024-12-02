@@ -32,12 +32,12 @@ export default function AppCard({ item }) {
                         <p><strong>Rating:</strong> {item.vote_average}</p>
                         <p><strong>Original Language:</strong> {item.original_language}</p>
                         {item.original_language && (
-                            <Flag code={languageFlags[item.original_language]} style={{ height: 15 }} />
+                            <Flag code={languageFlags[item.original_language]} style={{ height: 100, width: 100 }} />
                         )}
                         <p><strong>Overview:</strong> {item.overview}</p>
                     </div>
                 )}
-                <img src={`https://image.tmdb.org/t/p/w342${item.poster_path}`} alt={item.title || item.name} />
+                <img src={`https://image.tmdb.org/t/p/w500${item.poster_path}`} alt={item.title || item.name} />
             </div>
         </div>
     )
